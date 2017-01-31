@@ -1,5 +1,6 @@
 package ua.shield.hw29012017;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
 /**
@@ -8,24 +9,35 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        String[] arr={"one","two","three","abc"};
-       printArray(sortArray(arr));
+        String[] string = getString();
+        System.out.println(Arrays.toString(string));
 
     }
 
 
-    private static String getString() {
-        String result = "";
-        String tmpString;
+    private static String[] getString() {
+        String[] tmpStr=new String[2];
+        int index=0;
+        String tmpString="";
         Scanner scanner = new Scanner(System.in);
         while (true) {
             tmpString = scanner.nextLine();
             if (tmpString.trim().equals("")) {
                 break;
             }
-            result += tmpString;
+            if(index+1>tmpStr.length){
+                tmpStr=copyArray(tmpStr);
+            }
+            tmpStr[index]= tmpString;
+            index++;
         }
-        return result;
+        return tmpStr;
+    }
+
+    private static<T> T[] copyArray(T[] tmpStr) {
+        T [] newArray= (T[]) new Object[10];
+        newArray= Arrays.copyOf(tmpStr, (int) (tmpStr.length*1.5));
+        return newArray;
     }
 
     private static String firstHalf(String str){
