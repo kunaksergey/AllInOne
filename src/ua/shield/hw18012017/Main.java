@@ -45,7 +45,7 @@ public class Main {
         System.out.println("Отсортированный массив по убыванию:");
         int[] arrSort = sortIntegerArray(arr, new FromMaxToMinSortStrategy());
         System.out.println(Arrays.toString(arrSort));
-        System.out.println("Результат для числа: " + number);
+        System.out.println("Результат для числа: " + number+" в отсортированном массиве");
         System.out.println(Arrays.toString(sortIntegerArray(indexElementInArray(arrSort, number), new FromMinToMaxSortStrategy())));
     }
 
