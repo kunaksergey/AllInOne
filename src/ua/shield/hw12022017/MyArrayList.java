@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 
 public class MyArrayList<T> implements List<T> {
     private int size=0;
-    private final int length=3;
+    private final int length=10;
     private Object [] arrayTmp;
 
 
@@ -35,6 +35,9 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
+        if(indexOf(o)!=-1){
+            return true;
+        }
         return false;
     }
 
@@ -50,7 +53,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        return arrayTmp;
     }
 
     @Override
@@ -82,7 +85,11 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        if((length-size)>c.size()){
+            System.arraycopy(c.toArray(),0,arrayTmp,size,c.size());
+            size=size()+c.size();
+        }
+        return true;
     }
 
     @Override
@@ -127,7 +134,8 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T set(int index, T element) {
-        return null;
+        arrayTmp[index]=element;
+        return (T) arrayTmp[index];
     }
 
     @Override
@@ -142,7 +150,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        for (int i = 0; i <size ; i++) {
+            if(arrayTmp[i].equals(o)&&arrayTmp[i].hashCode()==o.hashCode()){
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
