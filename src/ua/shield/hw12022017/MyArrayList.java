@@ -76,18 +76,18 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        if(size==length){
-            Object[] newArray=new Object[length*3/2+1];
-            System.arraycopy(arrayTmp,0,newArray,0,size);
-            arrayTmp=newArray;
-        }
-
+        if(size==arrayTmp.length){
+            extendBoudOfArray(arrayTmp.length*3/2+1);
+     }
         arrayTmp[size++]=t;
         return true;
     }
 
     @Override
     public void add(int index, T element) {
+        if(index>=size){
+            throw new IndexOutOfBoundsException("index:"+index+" size:"+size);
+        }
         System.arraycopy(arrayTmp,index,arrayTmp,index+1,size-index);
         arrayTmp[index]=element;
         size++;
@@ -103,18 +103,32 @@ public class MyArrayList<T> implements List<T> {
         throw new MethodNotSupportExeption();
     }
 
+    /**
+     *
+     * @param c-коллекция для добавленияв конец
+     * @return
+     */
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        if((length-size)>c.size()){
+        if((arrayTmp.length-size)>=c.size()){
             System.arraycopy(c.toArray(),0,arrayTmp,size,c.size());
-            size=size()+c.size();
+            size+=+c.size();
+            return true;
+        }else{
+
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        if(arrayTmp.length-size<c.size()){
+            extendBoudOfArray((c.size()-(arrayTmp.length-size))*3/2+1);
+        }
+        System.arraycopy(arrayTmp,index,arrayTmp,index+c.size(),size-index);
+        System.arraycopy(c.toArray(),0,arrayTmp,index,c.size());
+        size+=c.size();
+        return true;
     }
 
     @Override
@@ -230,5 +244,11 @@ public class MyArrayList<T> implements List<T> {
         }
         stringBuffer.append("}");
         return stringBuffer.toString();
+    }
+
+    private void extendBoudOfArray(int size){
+        Object[] newArray=new Object[size];
+        System.arraycopy(arrayTmp,0,newArray,0,size);
+        arrayTmp=newArray;
     }
 }
