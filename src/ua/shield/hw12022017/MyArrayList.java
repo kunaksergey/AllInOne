@@ -23,16 +23,29 @@ public class MyArrayList<T> implements List<T> {
         arrayTmp=new Object[capacity];
     }
 
+    /**
+     *
+     * @return размер коллекции
+     */
     @Override
     public int size() {
         return size;
     }
 
+    /**
+     *
+     * @return true-коллекция не пуста, иначе false
+     */
     @Override
     public boolean isEmpty() {
         return (size>0)?false:true;
     }
 
+    /**
+     *
+     * @param o-объект
+     * @return true-если объект содержится в коллекции, иначе false
+     */
     @Override
     public boolean contains(Object o) {
         if(indexOf(o)!=-1){
@@ -43,7 +56,7 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
@@ -74,13 +87,20 @@ public class MyArrayList<T> implements List<T> {
     }
 
     @Override
+    public void add(int index, T element) {
+        System.arraycopy(arrayTmp,index,arrayTmp,index+1,size-index);
+        arrayTmp[index]=element;
+        size++;
+    }
+
+    @Override
     public boolean remove(Object o) {
-        return false;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
@@ -119,12 +139,12 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public void sort(Comparator<? super T> c) {
-
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public void clear() {
-
+        throw new MethodNotSupportExeption();
     }
 
     @Override
@@ -138,14 +158,13 @@ public class MyArrayList<T> implements List<T> {
         return (T) arrayTmp[index];
     }
 
-    @Override
-    public void add(int index, T element) {
 
-    }
 
     @Override
     public T remove(int index) {
-        return null;
+        T tmpObj= (T) arrayTmp[index];
+        System.arraycopy(arrayTmp,index,arrayTmp,index-1,size-index);
+        return tmpObj;
     }
 
     @Override
@@ -160,37 +179,43 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        int lastIndex=-1;
+        for (int i = 0; i <size ; i++) {
+            if(arrayTmp[i].equals(o)&&arrayTmp[i].hashCode()==o.hashCode()){
+                lastIndex=i;
+            }
+        }
+        return lastIndex;
     }
 
     @Override
     public ListIterator<T> listIterator() {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public Spliterator<T> spliterator() {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public Stream<T> stream() {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
     public Stream<T> parallelStream() {
-        return null;
+        throw new MethodNotSupportExeption();
     }
 
     @Override
@@ -200,7 +225,7 @@ public class MyArrayList<T> implements List<T> {
         for (int i=0;i<size;i++){
             stringBuffer.append(arrayTmp[i]);
             if(i<size-1){
-                stringBuffer.append(",");
+                stringBuffer.append(", ");
             }
         }
         stringBuffer.append("}");
