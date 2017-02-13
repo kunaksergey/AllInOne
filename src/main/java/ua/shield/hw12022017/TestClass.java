@@ -12,7 +12,7 @@ public class TestClass {
 
     @Override
     public boolean equals(Object obj) {
-         return this.x==((TestClass)obj).getX();
+        return this.x == ((TestClass) obj).getX();
     }
 
     public int getX() {
