@@ -45,7 +45,7 @@ public class TestMyArrayList {
     }
 
     @Test
-    public void testAddAll(){
+    public void testAddAllIndex(){
         List<String> innerList=new MyArrayList<>(list);
         String [] strList={"One","Two",null,"Four"};
         List<String> arrayList=new ArrayList<>(Arrays.asList(strList));
@@ -54,15 +54,64 @@ public class TestMyArrayList {
     }
 
     @Test
-    public void testAddAllIndex(){
+    public void testAddAll(){
         List<String> innerList=new MyArrayList<>(list);
         String [] strList={"One","Two",null,"Four"};
         List<String> arrayList=new ArrayList<>(Arrays.asList(strList));
-        Assert.assertEquals(14,innerList.size());
-        innerList.addAll(3,arrayList);
+        innerList.addAll(arrayList);
         Assert.assertEquals(18,innerList.size());
     }
 
+    @Test
+    public void testIndexOfEl(){
+        List<String> innerList=new MyArrayList<>(list);
+        Assert.assertEquals(2,innerList.indexOf(null));
+        Assert.assertEquals(3,innerList.indexOf("Four"));
+        Assert.assertEquals(-1,innerList.indexOf("XXX"));
+        Assert.assertEquals(13,innerList.indexOf("Ten"));
+    }
+
+    @Test
+    public void testIndexLastOfEl(){
+        List<String> innerList=new MyArrayList<>(list);
+        Assert.assertEquals(8,innerList.lastIndexOf(null));
+        Assert.assertEquals(6,innerList.lastIndexOf("Four"));
+        Assert.assertEquals(-1,innerList.lastIndexOf("XXX"));
+        Assert.assertEquals(13,innerList.lastIndexOf("Ten"));
+    }
+    @Test
+    public void testCapacity(){
+        List<String> innerList=new MyArrayList<>(20);
+        innerList.addAll(list);
+        Assert.assertEquals(14,innerList.size());
+    }
+
+    @Test
+    public void testRemoteObject(){
+        List<String> innerList=new MyArrayList<>();
+        innerList.addAll(list);
+        innerList.remove(null);
+        Assert.assertEquals(13,innerList.size());
+        innerList.remove("Four");
+        Assert.assertEquals(12,innerList.size());
+        innerList.remove("XXX");
+        Assert.assertEquals(12,innerList.size());
+    }
+
+    @Test
+    public void testRemoteAll(){
+        List<String> innerList=new MyArrayList<>();
+        List<String> listForRemove=new ArrayList<>(list);
+        innerList.addAll(list);
+        innerList.removeAll(listForRemove);
+        Assert.assertEquals(0,innerList.size());
+    }
+
+    @Test
+    public void isEmpty(){
+        List<String> innerList=new MyArrayList<>();
+        Assert.assertTrue(innerList.isEmpty());
+    }
     @After
     public void printList(){
         System.out.println(list);
