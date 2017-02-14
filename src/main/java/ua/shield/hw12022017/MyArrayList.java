@@ -168,17 +168,33 @@ public class MyArrayList<T> implements List<T> {
 
     @Override
     public T get(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("index:" + index + " size:" + size);
+        }
         return (T) arrayTmp[index];
     }
 
+    /**
+     *
+     * @param index позиция вставки эллемента
+     * @param element -елемент для вставки
+     * @return
+     */
     @Override
     public T set(int index, T element) {
         if (!PERMITNULL && element == null) throw new NullPointerException();
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("index:" + index + " size:" + size);
+        }
         arrayTmp[index] = element;
         return get(index);
     }
 
-
+    /**
+     *
+     * @param index индекс удаляемого объекта
+     * @return удаленный объект
+     */
     @Override
     public T remove(int index) {
         if (index >= size || index < 0) {
@@ -190,6 +206,11 @@ public class MyArrayList<T> implements List<T> {
         return tmpObj;
     }
 
+    /**
+     *
+     * @param o объект для поиска
+     * @return индекс первого найденого эллемента или -1
+     */
     @Override
     public int indexOf(Object o) {
         if (!PERMITNULL) throw new NullPointerException();
@@ -200,6 +221,11 @@ public class MyArrayList<T> implements List<T> {
         return -1;
     }
 
+    /**
+     *
+     * @param o объект для поиска
+     * @return индекс последнего найденого эллемента или -1
+     */
     @Override
     public int lastIndexOf(Object o) {
         if (!PERMITNULL) throw new NullPointerException();

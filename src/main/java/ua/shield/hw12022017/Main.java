@@ -32,5 +32,7 @@ public class Main {
         }
         System.out.println(listTestClass);
         System.out.println(listTestClass.size());
+        listTestClass.set(2,new TestClass(5));
+        System.out.println(listTestClass);
     }
 }
