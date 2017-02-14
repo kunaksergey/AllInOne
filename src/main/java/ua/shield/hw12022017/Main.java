@@ -21,7 +21,16 @@ public class Main {
         listTestClass.add(new TestClass(7));
         listTestClass.add(new TestClass(8));
         listTestClass.add(null);
+        listTestClass.add(new TestClass(9));
+        listTestClass.add(null);
        // System.out.println(listTestClass.indexOf(new TestClass(8)));
-        System.out.println(listTestClass.indexOf(new TestClass(11)));
+        Iterator <TestClass> iterator=listTestClass.iterator();
+        TestClass testClass;
+        while (iterator.hasNext()){
+            testClass=iterator.next();
+            if(testClass==null) iterator.remove();
+        }
+        System.out.println(listTestClass);
+        System.out.println(listTestClass.size());
     }
 }

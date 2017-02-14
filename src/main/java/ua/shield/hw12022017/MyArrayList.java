@@ -250,7 +250,7 @@ public class MyArrayList<T> implements List<T> {
 
             @Override
             public boolean hasNext() {
-                return index < size;
+                return index < size-1;
             }
 
             @Override
