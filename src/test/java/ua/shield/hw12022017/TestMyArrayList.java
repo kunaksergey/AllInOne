@@ -20,12 +20,13 @@ public class TestMyArrayList {
     public static void fillListTestClass() {
         listTestClass.add(new TestClass(1));
         listTestClass.add(new TestClass(2));
-        listTestClass.add(new TestClass(3));
+        listTestClass.add(null);
         listTestClass.add(new TestClass(4));
         listTestClass.add(new TestClass(5));
         listTestClass.add(new TestClass(6));
         listTestClass.add(new TestClass(7));
         listTestClass.add(new TestClass(8));
+
     }
 
     @BeforeClass
@@ -135,7 +136,7 @@ public class TestMyArrayList {
         innerListTestClass.remove(new TestClass(8));
         Assert.assertEquals(9, innerListTestClass.size());
         innerListTestClass.remove(null);
-        Assert.assertEquals(9, innerListTestClass.size());
+        Assert.assertEquals(8, innerListTestClass.size());
     }
 
     @Test

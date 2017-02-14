@@ -1,5 +1,7 @@
 package ua.shield.hw12022017;
 
+import org.junit.Assert;
+
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
@@ -9,19 +11,17 @@ import java.util.List;
  */
 public class Main {
     public static void main(String[] args) {
-        String[] arrStr = {null, "xx", "our"};
-
-        List<String> myArrayList = new MyArrayList<>(Arrays.asList(arrStr));
-        System.out.println(myArrayList);
-        System.out.println(myArrayList.size());
-        Iterator<String> iterator = myArrayList.iterator();
-        while (iterator.hasNext()) {
-            if (iterator.next() == null) {
-                iterator.remove();
-            }
-        }
-        System.out.println(myArrayList);
-        System.out.println(myArrayList.size());
-
+        MyArrayList<TestClass> listTestClass=new MyArrayList<>();
+        listTestClass.add(new TestClass(1));
+        listTestClass.add(new TestClass(2));
+        listTestClass.add(new TestClass(3));
+        listTestClass.add(new TestClass(4));
+        listTestClass.add(new TestClass(5));
+        listTestClass.add(new TestClass(6));
+        listTestClass.add(new TestClass(7));
+        listTestClass.add(new TestClass(8));
+        listTestClass.add(null);
+       // System.out.println(listTestClass.indexOf(new TestClass(8)));
+        System.out.println(listTestClass.indexOf(new TestClass(11)));
     }
 }

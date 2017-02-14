@@ -24,10 +24,18 @@ public class MyArrayList<T> implements List<T> {
 
     }
 
+    /**
+     *
+     * @param capacity начальный размер коллекции
+     */
     public MyArrayList(int capacity) {
         arrayTmp = new Object[capacity];
     }
 
+    /**
+     * создаем коллекцию на основе коллекции
+     * @param c коллекция типа Т
+     */
     public MyArrayList(Collection<? extends T> c) {
         addAll(c);
     }
@@ -61,11 +69,20 @@ public class MyArrayList<T> implements List<T> {
         return false;
     }
 
+    /**
+     *
+     * @return массив из коллекции
+     */
     @Override
     public Object[] toArray() {
         return Arrays.copyOf(arrayTmp, size);
     }
 
+    /**
+     *
+     * @param element для добавления
+     * @return //true-если елемент добавлен
+     */
     @Override
     public boolean add(T element) {
         if (!PERMITNULL && element == null) throw new NullPointerException();
@@ -95,7 +112,7 @@ public class MyArrayList<T> implements List<T> {
     public boolean remove(Object o) {
         if (!PERMITNULL && o == null) throw new NullPointerException();
         for (int i = 0; i < size; i++) {
-            if ((o == null ? get(i) == null : o.equals(get(i)))) {
+            if (o == null ? get(i) == null :get(i)==null?false: o.equals(get(i))) {
                 remove(i);
                 return true;
             }
@@ -177,7 +194,7 @@ public class MyArrayList<T> implements List<T> {
     public int indexOf(Object o) {
         if (!PERMITNULL) throw new NullPointerException();
         for (int i = 0; i < size; i++) {
-            if (o == null ? get(i) == null : o.equals(get(i)))
+            if (o == null ? get(i) == null :get(i)==null?false: o.equals(get(i)))
                 return i;
         }
         return -1;
@@ -187,7 +204,7 @@ public class MyArrayList<T> implements List<T> {
     public int lastIndexOf(Object o) {
         if (!PERMITNULL) throw new NullPointerException();
         for (int i = size - 1; i >= 0; i--) {
-            if (o == null ? get(i) == null : o.equals(get(i))) {
+            if (o == null ? get(i) == null :get(i)==null?false: o.equals(get(i))) {
                 return i;
             }
         }
