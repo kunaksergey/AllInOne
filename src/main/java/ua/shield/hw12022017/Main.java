@@ -34,5 +34,11 @@ public class Main {
         System.out.println(listTestClass.size());
         listTestClass.set(2,new TestClass(5));
         System.out.println(listTestClass);
+        MyArrayList<TestClass> listTestClass2=new MyArrayList<>();
+        listTestClass2.add(new TestClass(5));
+        listTestClass2.add(new TestClass(6));
+        listTestClass2.add(new TestClass(7));
+        listTestClass.addAll(3,listTestClass2);
+        System.out.println(listTestClass);
     }
 }

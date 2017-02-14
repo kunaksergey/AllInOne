@@ -40,7 +40,7 @@ public class MyArrayList<T> implements List<T> {
         addAll(c);
     }
 
-    /**
+    /**Размер коллекции
      * @return размер коллекции
      */
     @Override
@@ -48,7 +48,7 @@ public class MyArrayList<T> implements List<T> {
         return (size > Integer.MAX_VALUE) ? Integer.MAX_VALUE : size;
     }
 
-    /**
+    /**Пуста ли коллекция
      * @return true-коллекция не пуста, иначе false
      */
     @Override
@@ -56,7 +56,7 @@ public class MyArrayList<T> implements List<T> {
         return (size > 0) ? false : true;
     }
 
-    /**
+    /**Содержит ли коллекция элемент
      * @param o-объект
      * @return true-если объект содержится в коллекции, иначе false
      */
@@ -70,7 +70,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     /**
-     *
+     *Создание массива из коллекции
      * @return массив из коллекции
      */
     @Override
@@ -79,7 +79,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     /**
-     *
+     *Добавление элемента в конец
      * @param element для добавления
      * @return //true-если елемент добавлен
      */
@@ -94,6 +94,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     /**
+     * Добавление елемента на позицию
      * @param index   индекс с которого вставить елемент
      * @param element
      */
@@ -108,6 +109,11 @@ public class MyArrayList<T> implements List<T> {
         size++;
     }
 
+    /**
+     *
+     * @param o объект для удаления
+     * @return true-если объект был удален
+     */
     @Override
     public boolean remove(Object o) {
         if (!PERMITNULL && o == null) throw new NullPointerException();
@@ -121,6 +127,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     /**
+     * добавление коллекции в конец
      * @param c-коллекция для добавленияв конец
      * @return
      */
@@ -135,6 +142,12 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * добавление коллекции на позицию
+     * @param index индекс позциии добаления
+     * @param c-добавляемая коллекция
+     * @return если коллекция была добавлена
+     */
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
         if (!PERMITNULL && c.contains(null)) throw new NullPointerException();
@@ -150,6 +163,11 @@ public class MyArrayList<T> implements List<T> {
         return true;
     }
 
+    /**
+     * Удаление из текущей коллекции коллекции 'с'
+     * @param c коллекция для удаления
+     * @return true- если были удалены елементы входящие в 'с'
+     */
     @Override
     public boolean removeAll(Collection<?> c) {
         if (!PERMITNULL && c.contains(null)) throw new NullPointerException();
@@ -166,6 +184,11 @@ public class MyArrayList<T> implements List<T> {
         return remoted;
     }
 
+    /**
+     * Получение элемента по индексу
+     * @param index индекс получаемого элемента
+     * @return
+     */
     @Override
     public T get(int index) {
         if (index >= size || index < 0) {
@@ -175,7 +198,7 @@ public class MyArrayList<T> implements List<T> {
     }
 
     /**
-     *
+     *Установка елемента на позицию
      * @param index позиция вставки эллемента
      * @param element -елемент для вставки
      * @return
