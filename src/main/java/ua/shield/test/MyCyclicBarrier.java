@@ -5,11 +5,25 @@ package ua.shield.test;
  */
 public class MyCyclicBarrier {
     Runnable action;
+    private final int COUNTTHREAD;
+    private int count;
 
-    public MyCyclicBarrier(Runnable action) {
+    public MyCyclicBarrier(int countThread,Runnable action) {
         this.action = action;
+        COUNTTHREAD=countThread;
     }
 
-    public void await() {
+    public synchronized void await() throws InterruptedException {
+        count++;
+        if(count<COUNTTHREAD) {
+          this.wait();
+        }
+        if(count==COUNTTHREAD) {
+            action.run();
+            count = 0;
+            this.notifyAll();
+        }
+        }
     }
-}
+
+
