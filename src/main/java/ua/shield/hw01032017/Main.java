@@ -16,7 +16,7 @@ public class Main {
         Stock stock = stockService.findById(1);
         stock.setCode("66666");
         stockService.save(stock);
-
+        stockService.findAll().forEach(System.out::println);
 
     }
 }

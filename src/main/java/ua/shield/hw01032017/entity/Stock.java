@@ -1,13 +1,14 @@
 package ua.shield.hw01032017.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by sa on 01.03.17.
  */
 @Entity
 @Table(name="Stock")
-public class Stock {
+public class Stock implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")

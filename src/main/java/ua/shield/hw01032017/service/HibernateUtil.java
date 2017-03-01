@@ -1,5 +1,6 @@
 package ua.shield.hw01032017.service;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -25,5 +26,15 @@ public class HibernateUtil {
         return sessionFactory;
     }
 
+    public static Session openSession(){
+        Session session = getSessionFactory().openSession();
+        session.beginTransaction();
+        return session;
+    }
+
+    public static void closeSession(Session session){
+        session.getTransaction().commit();
+        session.close();
+    }
 
 }
