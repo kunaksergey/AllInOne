@@ -27,6 +27,14 @@ public class Stock implements Serializable{
         this.code=code;
         this.name=name;
     }
+    public Stock(int id,String code, String name) {
+        this.id=id;
+        this.code=code;
+        this.name=name;
+    }
+
+
+
 
     public int getId() {
         return id;
@@ -50,6 +58,26 @@ public class Stock implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Stock stock = (Stock) o;
+        if (id != stock.id) return false;
+        if (!code.equals(stock.code)) return false;
+        return name.equals(stock.name);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + code.hashCode();
+        result = 31 * result + name.hashCode();
+        return result;
     }
 
     @Override

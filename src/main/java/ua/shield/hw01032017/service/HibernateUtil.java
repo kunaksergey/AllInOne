@@ -4,6 +4,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.function.Function;
+
 /**
  * Created by sa on 01.03.17.
  */
@@ -41,5 +43,12 @@ public class HibernateUtil {
         if(sessionFactory!=null && sessionFactory.isOpen()) {
             sessionFactory.close();
         }
+    }
+
+    public static<R> R execute(Function<Session,R> function){
+        Session session=openSession();
+        R obj= function.apply(session);
+        closeSession(session);
+        return obj;
     }
 }

@@ -9,6 +9,11 @@ import java.util.List;
  */
 public class StockService implements IService<Stock>{
     private StockDao stockDao=new StockDao();
+
+    public void setStockDao(StockDao stockDao) {
+        this.stockDao = stockDao;
+    }
+
     private static StockService stockService;
 
     public static StockService newInstance() {

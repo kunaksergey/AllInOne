@@ -13,42 +13,46 @@ import java.util.function.Function;
 public class StockDao {
 
       public void save(Stock stock) {
-        Session session = HibernateUtil.openSession();
+        /*Session session = HibernateUtil.openSession();
         session.saveOrUpdate(stock);
         session.flush();
-        HibernateUtil.closeSession(session);
+        HibernateUtil.closeSession(session);*/
+        HibernateUtil.execute((Session s)->{s.saveOrUpdate(stock);s.flush();return null;});
        }
 
     public List<Stock> findAll() {
-        Session session = HibernateUtil.openSession();
+        /*Session session = HibernateUtil.openSession();
         List list = (List<Stock>) session.createQuery(" from Stock").list();
         HibernateUtil.closeSession(session);
-        return list;
+        return list;*/
+        return HibernateUtil.execute((Session s)->(List<Stock>) s.createQuery(" from Stock").list());
     }
 
     public Stock findById(int id) {
-        Session session = HibernateUtil.openSession();
+       /* Session session = HibernateUtil.openSession();
         Stock stock=session.find(Stock.class,id);
         HibernateUtil.closeSession(session);
-        return stock;
+        return stock;*/
+        return HibernateUtil.execute((Session s)->s.find(Stock.class,id));
     }
 
     public void delete(Stock stock) {
-        Session session = HibernateUtil.openSession();
+        /*Session session = HibernateUtil.openSession();
         session.delete(stock);
-        HibernateUtil.closeSession(session);
-    }
-
-
-    public void shutdown() {
-        HibernateUtil.shutDown();
+        HibernateUtil.closeSession(session);*/
+        HibernateUtil.execute((Session s)->{s.delete(stock);return null;});
     }
 
     public int deleteAll() {
-        final String sql="delete from stock";
+        /*final String sql="delete from stock";
         Session session = HibernateUtil.openSession();
         int result=session.createQuery("delete from Stock").executeUpdate();
         HibernateUtil.closeSession(session);
-        return result;
+        return result;*/
+        return HibernateUtil.execute((Session s)->s.createQuery("delete from Stock").executeUpdate());
+    }
+
+    public void shutdown() {
+        HibernateUtil.shutDown();
     }
 }
