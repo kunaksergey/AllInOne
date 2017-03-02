@@ -36,6 +36,11 @@ public class StockService implements IService<Stock>{
         stockDao.delete(obj);
     }
 
+    @Override
+    public int deleteAll() {
+        return stockDao.deleteAll();
+    }
+
     public void shutdown(){
         stockDao.shutdown();
     }

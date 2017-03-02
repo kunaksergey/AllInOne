@@ -14,10 +14,10 @@ public class Stock implements Serializable{
     @Column(name="id")
     private int id;
 
-    @Column(name="code")
+    @Column(name="stock_code")
     private String code;
 
-    @Column(name="name")
+    @Column(name="stock_name")
     private String name;
 
     public Stock() {

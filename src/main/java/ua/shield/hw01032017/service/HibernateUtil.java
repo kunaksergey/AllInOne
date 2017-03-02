@@ -38,6 +38,8 @@ public class HibernateUtil {
     }
 
     public static void shutDown(){
-        sessionFactory.close();
+        if(sessionFactory!=null && sessionFactory.isOpen()) {
+            sessionFactory.close();
+        }
     }
 }

@@ -15,11 +15,17 @@ public class Main {
         stockService.findAll().forEach(System.out::println);
         System.out.println("**********************");
         Stock stock = stockService.findById(1);
+
+        if(stock!=null) {
         stock.setCode("777");
         System.out.println(stock);
         System.out.println("**********************");
-        stockService.save(stock);
+
+            stockService.save(stock);
+        }
+
         stockService.findAll().forEach(System.out::println);
+        stockService.deleteAll();
         stockService.shutdown();
 
     }
