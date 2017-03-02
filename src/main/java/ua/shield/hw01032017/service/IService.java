@@ -12,4 +12,5 @@ public interface IService<T> {
     List<T> findAll();
     T findById(int id);
     void delete(T obj);
+
 }

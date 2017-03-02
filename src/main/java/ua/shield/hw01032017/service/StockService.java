@@ -35,4 +35,9 @@ public class StockService implements IService<Stock>{
     public void delete(Stock obj) {
         stockDao.delete(obj);
     }
+
+    public void shutdown(){
+        stockDao.shutdown();
+    }
+
 }

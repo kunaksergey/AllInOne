@@ -13,7 +13,8 @@ public class StockDao {
 
       public void save(Stock stock) {
         Session session = HibernateUtil.openSession();
-        session.save(stock);
+        session.saveOrUpdate(stock);
+        session.flush();
         session.close();
     }
 
@@ -38,5 +39,7 @@ public class StockDao {
     }
 
 
-
+    public void shutdown() {
+        HibernateUtil.shutDown();
+    }
 }

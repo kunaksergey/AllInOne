@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by sa on 01.03.17.
  */
 @Entity
-@Table(name="Stock")
+@Table(name="stock")
 public class Stock implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,5 +50,13 @@ public class Stock implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Stock:" + "id=" + id +
+                ", code='" + code + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

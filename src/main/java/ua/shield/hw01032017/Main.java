@@ -13,10 +13,14 @@ public class Main {
         stockService.save(new Stock("1312d","two"));
         stockService.save(new Stock("2sada","three"));
         stockService.findAll().forEach(System.out::println);
+        System.out.println("**********************");
         Stock stock = stockService.findById(1);
-        stock.setCode("66666");
+        stock.setCode("777");
+        System.out.println(stock);
+        System.out.println("**********************");
         stockService.save(stock);
         stockService.findAll().forEach(System.out::println);
+        stockService.shutdown();
 
     }
 }
