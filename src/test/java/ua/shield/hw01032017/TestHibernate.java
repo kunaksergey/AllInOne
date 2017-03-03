@@ -7,6 +7,9 @@ import ua.shield.hw01032017.entity.Stock;
 import ua.shield.hw01032017.service.StockDao;
 import ua.shield.hw01032017.service.StockService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by sa on 02.03.17.
  */
@@ -20,5 +23,10 @@ public class TestHibernate {
         stockService.setStockDao(stockDao);
         Assert.assertEquals(stockService.findById(1),new Stock(1,"one","one"));
     }
-    
+
+
+
+
+
+
 }
