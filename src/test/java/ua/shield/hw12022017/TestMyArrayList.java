@@ -1,23 +1,27 @@
 package ua.shield.hw12022017;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+
+import org.junit.*;
+
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.*;
+
 /**
  * Created by sa on 13.02.17.
  */
 public class TestMyArrayList {
-    static List<String> list = new MyArrayList<>();
-    static List<TestClass> listTestClass = new MyArrayList<>();
+     List<String> list = new MyArrayList<>();
+     List<TestClass> listTestClass = new MyArrayList<>();
 
-    @BeforeClass
-    public static void fillListTestClass() {
+
+    @Before
+    public void fillListTestClass() {
         listTestClass.add(new TestClass(1));
         listTestClass.add(new TestClass(2));
         listTestClass.add(null);
@@ -29,8 +33,8 @@ public class TestMyArrayList {
 
     }
 
-    @BeforeClass
-    public static void fillList() {
+    @Before
+    public  void fillList() {
         list.add("One");
         list.add("Two");
         list.add(null);
@@ -49,14 +53,14 @@ public class TestMyArrayList {
 
     @Test
     public void testAdd() {
-        Assert.assertEquals(14, list.size());
-        Assert.assertEquals(8, listTestClass.size());
+        assertEquals(14, list.size());
+        assertEquals(8, listTestClass.size());
     }
 
     @Test
     public void testToArray() {
-        Assert.assertEquals(14, list.toArray().length);
-        Assert.assertEquals(8, listTestClass.toArray().length);
+        assertEquals(14, list.toArray().length);
+        assertEquals(8, listTestClass.toArray().length);
     }
 
     @Test
@@ -65,7 +69,7 @@ public class TestMyArrayList {
         String[] strList = {"One", "Two", null, "Four"};
         List<String> arrayList = new ArrayList<>(Arrays.asList(strList));
         innerList.addAll(3, arrayList);
-        Assert.assertEquals(18, innerList.size());
+        assertEquals(18, innerList.size());
     }
 
     @Test
@@ -80,42 +84,42 @@ public class TestMyArrayList {
         List<TestClass> testClassList = new ArrayList<>(Arrays.asList(testClassArray));
 
         innerList.addAll(strList);
-        Assert.assertEquals(18, innerList.size());
+        assertEquals(18, innerList.size());
         innerListTestClass.addAll(testClassList);
-        Assert.assertEquals(12, innerListTestClass.size());
+        assertEquals(12, innerListTestClass.size());
     }
 
     @Test
     public void testIndexOfEl() {
         List<String> innerList = new MyArrayList<>(list);
         List<TestClass> innerListTestClass = new MyArrayList<>(listTestClass);
-        Assert.assertEquals(2, innerList.indexOf(null));
-        Assert.assertEquals(3, innerList.indexOf("Four"));
-        Assert.assertEquals(-1, innerList.indexOf("XXX"));
-        Assert.assertEquals(13, innerList.indexOf("Ten"));
-        Assert.assertEquals(13, innerList.indexOf("Ten"));
-        Assert.assertEquals(7, innerListTestClass.indexOf(new TestClass(8)));
-        Assert.assertEquals(-1, innerListTestClass.indexOf(new TestClass(11)));
+        assertEquals(2, innerList.indexOf(null));
+        assertEquals(3, innerList.indexOf("Four"));
+        assertEquals(-1, innerList.indexOf("XXX"));
+        assertEquals(13, innerList.indexOf("Ten"));
+        assertEquals(13, innerList.indexOf("Ten"));
+        assertEquals(7, innerListTestClass.indexOf(new TestClass(8)));
+        assertEquals(-1, innerListTestClass.indexOf(new TestClass(11)));
     }
 
     @Test
     public void testIndexLastOfEl() {
         List<String> innerList = new MyArrayList<>(list);
         List<TestClass> innerListTestClass = new MyArrayList<>(listTestClass);
-        Assert.assertEquals(8, innerList.lastIndexOf(null));
-        Assert.assertEquals(6, innerList.lastIndexOf("Four"));
-        Assert.assertEquals(-1, innerList.lastIndexOf("XXX"));
-        Assert.assertEquals(13, innerList.lastIndexOf("Ten"));
-        Assert.assertEquals(7, innerListTestClass.indexOf(new TestClass(8)));
+        assertEquals(8, innerList.lastIndexOf(null));
+        assertEquals(6, innerList.lastIndexOf("Four"));
+        assertEquals(-1, innerList.lastIndexOf("XXX"));
+        assertEquals(13, innerList.lastIndexOf("Ten"));
+        assertEquals(7, innerListTestClass.indexOf(new TestClass(8)));
         innerListTestClass.add(new TestClass(8));
-        Assert.assertEquals(8, innerListTestClass.lastIndexOf(new TestClass(8)));
+        assertEquals(8, innerListTestClass.lastIndexOf(new TestClass(8)));
     }
 
     @Test
     public void testCapacity() {
         List<String> innerList = new MyArrayList<>(20);
         innerList.addAll(list);
-        Assert.assertEquals(14, innerList.size());
+        assertEquals(14, innerList.size());
     }
 
     @Test
@@ -125,18 +129,18 @@ public class TestMyArrayList {
 
         innerList.addAll(list);
         innerList.remove(null);
-        Assert.assertEquals(13, innerList.size());
+        assertEquals(13, innerList.size());
         innerList.remove("Four");
-        Assert.assertEquals(12, innerList.size());
+        assertEquals(12, innerList.size());
         innerList.remove("XXX");
-        Assert.assertEquals(12, innerList.size());
+        assertEquals(12, innerList.size());
 
         innerListTestClass.add(new TestClass(8));
         innerListTestClass.add(new TestClass(9));
         innerListTestClass.remove(new TestClass(8));
-        Assert.assertEquals(9, innerListTestClass.size());
+        assertEquals(9, innerListTestClass.size());
         innerListTestClass.remove(null);
-        Assert.assertEquals(8, innerListTestClass.size());
+        assertEquals(8, innerListTestClass.size());
     }
 
     @Test
@@ -151,14 +155,61 @@ public class TestMyArrayList {
         innerList.removeAll(listForRemove);
         innerListTestClass.removeAll(listTestClassForRemove);
         innerListTestClass.removeAll(listTestClassForRemove);
-        Assert.assertEquals(0, innerList.size());
-        Assert.assertEquals(0, innerListTestClass.size());
+        assertEquals(0, innerList.size());
+        assertEquals(0, innerListTestClass.size());
     }
 
     @Test
     public void isEmpty() {
         List<String> innerList = new MyArrayList<>();
-        Assert.assertTrue(innerList.isEmpty());
+        assertTrue(innerList.isEmpty());
+    }
+    @Test
+    public void test_after_add_one(){
+        List<Integer> listInteger=new MyArrayList<>();
+        listInteger.add(1);
+        if(listInteger.size()!=1){
+            throw new AssertionError();
+        }
+    }
+    @Test
+    public void test_add_and_get(){
+        List<String> listString=new MyArrayList<>();
+        listString.add("A");
+        assertTrue(listString.get(0).equals("A"));
+      }
+
+    @Test
+    public void test_add_null(){
+        List<String> listString=new MyArrayList<>();
+        listString.add(null);
+        assertThat(listString.size(), is(1));
+    }
+
+    @Test
+    public void test_remove_ok(){
+        List<String> listString=new MyArrayList<>();
+        listString.add("A");
+        listString.remove("A");
+        if(listString.size()!=0){
+            throw new AssertionError();
+        }
+    }
+
+    @Test
+    public void test_remove_non(){
+        List<String> listString=new MyArrayList<>();
+        listString.add("A");
+        listString.remove("B");
+        if(listString.size()!=1){
+            throw new AssertionError();
+        }
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void test_get_elem_without_add(){
+        List list=new MyArrayList<>();
+        list.get(0);
     }
 
     @After
@@ -166,4 +217,5 @@ public class TestMyArrayList {
         System.out.println(list);
         System.out.println(listTestClass);
     }
+
 }
