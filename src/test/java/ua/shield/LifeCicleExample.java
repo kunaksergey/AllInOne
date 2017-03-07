@@ -7,6 +7,7 @@ import org.junit.*;
  */
 
 public class LifeCicleExample {
+
     public LifeCicleExample() {
         System.out.println("Constructor()");
     }

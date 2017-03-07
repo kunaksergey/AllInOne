@@ -1,10 +1,7 @@
 package ua.shield.hw12022017;
 
-import org.junit.Assert;
 
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by sa on 12.02.17.
