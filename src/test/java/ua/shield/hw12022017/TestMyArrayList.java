@@ -199,10 +199,11 @@ public class TestMyArrayList {
     @Test
     public void test_remove_non(){
         List<String> listString=new MyArrayList<>();
-        listString.add("A");
+        listString.add("A") ;
         listString.remove("B");
         if(listString.size()!=1){
             throw new AssertionError();
+
         }
     }
 
